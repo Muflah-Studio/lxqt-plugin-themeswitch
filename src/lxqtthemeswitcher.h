@@ -2,29 +2,29 @@
 // SPDX-FileCopyrightText: 2025 <copyright holder> <email addr>
 // SPDX-License-Identifier: GPL-2.0-or-later
 
-#ifndef LXQTLOREMIPSUM_H
-#define LXQTLOREMIPSUM_H
+#ifndef LXQTTHEMESWITCHER_H
+#define LXQTTHEMESWITCHER_H
 
 #include <lxqt/ilxqtpanelplugin.h>
-#include "loremipsumbutton.h"
+#include "themeswitcherbutton.h"
 #include <QWidget>
 
-class LoremIpsum : public QObject, public ILXQtPanelPlugin
+class ThemeSwitcher : public QObject, public ILXQtPanelPlugin
 {
     Q_OBJECT
 public:
-    LoremIpsum(const ILXQtPanelPluginStartupInfo &startupInfo);
+    ThemeSwitcher(const ILXQtPanelPluginStartupInfo &startupInfo);
     virtual QWidget *widget();
-    virtual QString themeId() const { return QStringLiteral("loremipsum"); }
+    virtual QString themeId() const { return QStringLiteral("themeswitcher"); }
     virtual ILXQtPanelPlugin::Flags flags() const { return PreferRightAlignment ; }
-    ~LoremIpsum();
+    ~ThemeSwitcher();
 
 private:
-    LoremIpsumButton *blabel;
+    ThemeSwitcherButton *blabel;
 };
 
 // Important part
-class LoremIpsumPluginLibrary: public QObject, public ILXQtPanelPluginLibrary
+class ThemeSwitcherPluginLibrary: public QObject, public ILXQtPanelPluginLibrary
 {
     Q_OBJECT
     Q_PLUGIN_METADATA(IID "lxqt.org/Panel/PluginInterface/3.0")
@@ -33,8 +33,8 @@ class LoremIpsumPluginLibrary: public QObject, public ILXQtPanelPluginLibrary
 public:
     ILXQtPanelPlugin *instance(const ILXQtPanelPluginStartupInfo &startupInfo) const
     {
-        return new LoremIpsum(startupInfo);
+        return new ThemeSwitcher(startupInfo);
     }
 };
 
-#endif // LXQTLOREMIPSUM_H
+#endif // LXQTTHEMESWITCHER_H

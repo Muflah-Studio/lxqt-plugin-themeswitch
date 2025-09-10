@@ -2,23 +2,23 @@
 // SPDX-FileCopyrightText: 2025 <copyright holder> <email>
 // SPDX-License-Identifier: GPL-2.0-or-later
 
-#ifndef LOREMIPSUMBUTTON_H
-#define LOREMIPSUMBUTTON_H
+#ifndef THEMESWITCHERBUTTON_H
+#define THEMESWITCHERBUTTON_H
 
 #include <QToolButton>
 
 class ILXQtPanelPlugin;
 
-class LoremIpsumButton : public QToolButton
+class ThemeSwitcherButton : public QToolButton
 {
     Q_OBJECT
 
 public:
-    LoremIpsumButton(ILXQtPanelPlugin *plugin, QWidget* parent = nullptr);
-    ~LoremIpsumButton();
+    ThemeSwitcherButton(ILXQtPanelPlugin *plugin, QWidget* parent = nullptr);
+    ~ThemeSwitcherButton();
 
 private:
     ILXQtPanelPlugin *mPlugin;
 };
 
-#endif // LOREMIPSUMBUTTON_H
+#endif // THEMESWITCHERBUTTON_H

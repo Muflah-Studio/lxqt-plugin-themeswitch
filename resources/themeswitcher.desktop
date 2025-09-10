@@ -1,0 +1,6 @@
+[Desktop Entry]
+Type=Service
+ServiceTypes=LXQtPanel/Plugin
+Name=Theme Switcher
+Comment=Light-Dark theme switcher
+Icon=preferences-desktop-theme

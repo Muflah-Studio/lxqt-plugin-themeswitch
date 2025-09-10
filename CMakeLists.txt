@@ -6,7 +6,7 @@
 cmake_minimum_required(VERSION 3.16)
 
 # Project information
-project(lqxt-loremipsum VERSION 0.0.1 LANGUAGES CXX)
+project(lqxt-themeswitcher VERSION 0.0.1 LANGUAGES CXX)
 
 # Find necessary packages
 find_package(Qt5 REQUIRED COMPONENTS Core Gui Widgets)
@@ -19,7 +19,7 @@ set(CMAKE_AUTOMOC ON)
 
 include(GNUInstallDirs)
 
-set(PLUGIN_ID "loremipsum")
+set(PLUGIN_ID "themeswitcher")
 set(PLUGIN_VERSION "0.0.1")
 
 set(PLUGIN_LIB_DIR "${CMAKE_INSTALL_FULL_LIBDIR}/lxqt-panel/")
@@ -35,10 +35,10 @@ include_directories(${QT_INCLUDE_DIRS})
 
 # Add the source files for the plugin library
 add_library(plugin MODULE
-    src/lxqtloremipsum.h
-    src/loremipsumbutton.h
-    src/lxqtloremipsum.cpp
-    src/loremipsumbutton.cpp)
+    src/lxqtthemeswitcher.h
+    src/themeswitcherbutton.h
+    src/lxqtthemeswitcher.cpp
+    src/themeswitcherbutton.cpp)
 
 # Link the plugin with dependencies
 target_link_libraries(plugin ${QT_LIBRARIES})
@@ -48,5 +48,5 @@ set_target_properties(plugin PROPERTIES OUTPUT_NAME ${PLUGIN_ID})
 
 # Install the plugin to the correct LXQt directory
 install(TARGETS plugin DESTINATION ${PLUGIN_LIB_DIR})
-install(FILES ${CMAKE_CURRENT_SOURCE_DIR}/resources/loremipsum.desktop
+install(FILES ${CMAKE_CURRENT_SOURCE_DIR}/resources/themeswitcher.desktop
     DESTINATION ${PLUGIN_DESKTOP_DIR})
