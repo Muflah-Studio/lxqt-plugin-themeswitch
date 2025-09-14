@@ -12,8 +12,8 @@ project(lqxt-themeswitcher VERSION 0.0.1 LANGUAGES CXX)
 find_package(Qt5 REQUIRED COMPONENTS Core Gui Widgets)
 
 # Set the standard for C++
-set(CMAKE_CXX_STANDARD 11)
-set(CMAKE_CXX_STANDARD_REQUIRED ON)
+set(CMAKE_CXX_STANDARD 17)
+set(CMAKE_CXX_STANDARD_REQUIRED TRUE)
 
 set(CMAKE_AUTOMOC ON)
 
@@ -21,6 +21,8 @@ include(GNUInstallDirs)
 
 set(PLUGIN_ID "themeswitcher")
 set(PLUGIN_VERSION "0.0.1")
+set(LXQT_MINIMUM_VERSION "1.4.0")
+set(QT_MINIMUM_VERSION "5.15.0")
 
 set(PLUGIN_LIB_DIR "${CMAKE_INSTALL_FULL_LIBDIR}/lxqt-panel/")
 set(PLUGIN_DESKTOP_DIR "${CMAKE_INSTALL_FULL_DATAROOTDIR}/lxqt/lxqt-panel/")
@@ -31,17 +33,28 @@ foreach(temp Core Gui Widgets)
     list(APPEND QT_INCLUDE_DIRS "${Qt5${temp}_INCLUDE_DIRS}")
     list(APPEND QT_LIBRARIES "${Qt5${temp}_LIBRARIES}")
 endforeach()
+
+find_package(lxqt ${LXQT_MINIMUM_VERSION} REQUIRED)
+
 include_directories(${QT_INCLUDE_DIRS})
+include(LXQtPreventInSourceBuilds)
+include(LXQtCompilerSettings NO_POLICY_SCOPE)
+
+set(LIBRARIES
+)
 
 # Add the source files for the plugin library
 add_library(plugin MODULE
     src/lxqtthemeswitcher.h
+    src/switchersettings.h
     src/themeswitcherbutton.h
+
     src/lxqtthemeswitcher.cpp
+    src/switchersettings.cpp
     src/themeswitcherbutton.cpp)
 
 # Link the plugin with dependencies
-target_link_libraries(plugin ${QT_LIBRARIES})
+target_link_libraries(plugin ${QT_LIBRARIES} lxqt)
 
 # Set necessary properties for the plugin
 set_target_properties(plugin PROPERTIES OUTPUT_NAME ${PLUGIN_ID})

@@ -1,26 +1,41 @@
 // Main plugin header
-// SPDX-FileCopyrightText: 2025 <copyright holder> <email addr>
+// SPDX-FileCopyrightText: 2025 Aryo Sr. <98627850+aryo-sr@users.noreply.github.com>
 // SPDX-License-Identifier: GPL-2.0-or-later
 
 #ifndef LXQTTHEMESWITCHER_H
 #define LXQTTHEMESWITCHER_H
 
-#include <lxqt/ilxqtpanelplugin.h>
-#include "themeswitcherbutton.h"
 #include <QWidget>
+#include <lxqt/ilxqtpanelplugin.h>
+
+#include "themeswitcherbutton.h"
+#include "switchersettings.h"
 
 class ThemeSwitcher : public QObject, public ILXQtPanelPlugin
 {
     Q_OBJECT
+
 public:
-    ThemeSwitcher(const ILXQtPanelPluginStartupInfo &startupInfo);
-    virtual QWidget *widget();
+    ThemeSwitcher(const ILXQtPanelPluginStartupInfo& startupInfo, SwitcherSettings *swSettings = nullptr);
+
     virtual QString themeId() const { return QStringLiteral("themeswitcher"); }
     virtual ILXQtPanelPlugin::Flags flags() const { return PreferRightAlignment ; }
+    QWidget *widget() { return blabel; }
     ~ThemeSwitcher();
 
 private:
     ThemeSwitcherButton *blabel;
+    SwitcherSettings *lxSettings;
+    QString getCurrentLXQtTheme();
+    QString getDarkTheme();
+    QString getLightTheme();
+    bool checkThemeSet();
+    void initializeSettings();
+    void saveThemeSettings(quint8 state);
+    quint8 toggleTheme();
+
+private slots:
+    void handleClick();
 };
 
 // Important part

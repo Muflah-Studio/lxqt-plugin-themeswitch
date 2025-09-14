@@ -1,5 +1,5 @@
-// <one line to give the program's name and a brief idea of what it does.>
-// SPDX-FileCopyrightText: 2025 <copyright holder> <email>
+// Representation container on panel
+// SPDX-FileCopyrightText: 2025 Aryo Sr. <98627850+aryo-sr@users.noreply.github.com>
 // SPDX-License-Identifier: GPL-2.0-or-later
 
 #ifndef THEMESWITCHERBUTTON_H
@@ -15,7 +15,11 @@ class ThemeSwitcherButton : public QToolButton
 
 public:
     ThemeSwitcherButton(ILXQtPanelPlugin *plugin, QWidget* parent = nullptr);
-    ~ThemeSwitcherButton();
+    ~ThemeSwitcherButton() override;
+
+// public slots:
+    void setPanelAppearance(quint8 choice = 0); // 0 waiting, 1 dark, 2 light
+    // void setToolTip(const QString& tooltip);
 
 private:
     ILXQtPanelPlugin *mPlugin;
